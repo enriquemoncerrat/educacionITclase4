@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Cafe;
+import com.example.demo.service.CafeService;
 
 @RestController
 @RequestMapping("/api")
 public class CafeController {
 	
 	//ENDPOINTS
-	
+	@Autowired
+	private CafeService cafeService;
 	//consulte cafes
 	
 	@GetMapping("/getproductos")
@@ -38,10 +41,10 @@ public class CafeController {
 	
 	// crear cafe
 	@PostMapping("/addCoffe")
-	public ResponseEntity<String> addCoffe(@RequestParam Cafe cafe){
+	public ResponseEntity<Boolean> addCoffe(@RequestParam Cafe cafe){
 		
 		
-		return null;
+		return ResponseEntity.ok(this.cafeService.addCoffeService(cafe));
 		
 		
 	}
